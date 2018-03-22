@@ -14,72 +14,31 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,db)=>{
         console.log('Unable to connect to web server');
     }
      console.log('Connected to MongoDB server');
-    //  db.collection('Todos').find({_id:new ObjectID('5ab2b084ab7f503134c1b3be')}).toArray().then((docs)=>{
-    //     console.log('Todos');
-    //     console.log(JSON.stringify(docs,undefined,2));
-    //  },(err)=>{
-    //      console.log('unable to fetch todos,',err)
-    //  });
 
-    // db.collection('Todos').find().count().then((count)=>{
-    //     console.log(`Todos count: ${count}`);
-        
-    //  },(err)=>{
-    //      console.log('unable to fetch todos,',err)
-    //  });
-
-    // db.collection('Todos').insertOne({
-    //     text:'Something',
-    //     completed: false
-    // },(err,result)=>{
-    //     if(err){
-    //         return console.log('Unable to insert ToDos',err);
+    // db.collection('Todos').findOneAndUpdate({
+    //     _id: new ObjectID('5ab3c28986eefeb9bde0ae02')
+    // },{
+    //     $set:{
+    //         completed: false 
     //     }
-    //     console.log(JSON.stringify(result.ops),undefined,2);
-    // });
-
-    //insert new doc into Users(name,age,location)
-//     db.collection('Users').insertOne({
-//             name:'Faris',
-//             age: 19,
-//             location:'Sarajevo'
-//         },(err,result)=>{
-//             if(err){
-//                 return console.log('Unable to insert Users',err);
-//             }
-//             console.log(JSON.stringify(result.ops[0]._id.getTimestamp));
-//         });
-    
-    //   db.collection('Users').find({name:'Faris'}).toArray().then((docs)=>{
-    //     console.log('Users');
-    //     console.log(JSON.stringify(docs,undefined,2));
-    //  },(err)=>{
-    //      console.log('unable to fetch users,',err)
-    //  });
-
-    //deleteMany
-    // db.collection('Todos').deleteMany({text:'eat lunch'}).then((result)=>{
+    // },{
+    //     returnOriginal:false
+    // }).then((result)=>{
     //     console.log(result);
     // });
 
-    //deleteOne
-    // db.collection('Todos').deleteOne({text:'eat lunch'}).then((result)=>{
-    // console.log(result);
-    // });
-
-    //findOneAndDelete
-
-    // db.collection('Todos').findOneAndDelete({completed:false}).then((result)=>{
-    //     console.log(result);
-    // });
-
-    // db.collection('Users').deleteMany({name:'Faris'}).then((result)=>{
-    //     console.log(result);
-    // });
-
-    db.collection('Users').findOneAndDelete({_id:new ObjectID('5ab3b61b2831ab262c20a95e')}).then((result)=>{
+    db.collection('Users').findOneAndUpdate({
+        _id: new ObjectID('5ab2b11e8688f933287cc585')
+    },{
+        $set:{
+            name:'Faris',
+        },
+        $inc:{
+            age:1
+        }
+    }).then((result)=>{
         console.log(result);
-    });
+    })
 
     // db.close();
 });
